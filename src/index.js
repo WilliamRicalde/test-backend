@@ -1,10 +1,20 @@
-const express = require('express')
+const express = require("express")
 const app = express()
+
+// xml
+// <name>rfddhfgd</name>
+
+// json
+// {
+//   name: "juan",
+//   sangre: { tipo: "A", rh: "positivo" },
+//   juegos: ["mario", "zelda", "mario bross"]
+// }
 
 app.use(express.json())
 
 // return inverted string
-app.get('/inverted', (req, res) => {
+app.get('/inverted/:id', (req, res) => {
   const { str } = req.body
 
   const invertedString = str.split('')
@@ -13,6 +23,12 @@ app.get('/inverted', (req, res) => {
     .replaceAll(',', '')
 
   res.send(invertedString)
+})
+
+app.post('/inverted', (req, res) => {
+  res.status(200).json({
+    name: 'juan',
+  })
 })
 
 const isTruthly = (a, b, c, d) => {
